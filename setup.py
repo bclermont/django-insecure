@@ -15,7 +15,7 @@ setup(
     author='Bruno Clermont',
     author_email='patate@fastmail.cn',
     license='MIT',
-    description=open('readme.rst').read(),
+    description=open('README.txt').read(),
     url='https://github.com/bclermont/django-insecure',
     classifiers=[
         'Development Status :: 4 - Beta',
