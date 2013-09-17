@@ -2,7 +2,6 @@
 
 from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
-from django.core.management import call_command
 from django.contrib.auth.models import User
 
 class Command(BaseCommand):
@@ -20,7 +19,5 @@ class Command(BaseCommand):
             if key not in options:
                 raise CommandError('Missing --%s' % key)
         options['interactive'] = 0
-        call_command('createsuperuser', **options)
-        user = User.objects.get(username=options.get('username'))
-        user.set_password(options['password'])
-        user.save()
+        User.objects.create_superuser(options['username'], options['email'],
+                                      options['password'])
