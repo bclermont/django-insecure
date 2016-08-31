@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from optparse import make_option
 from django.core.management.base import BaseCommand, CommandError
 
 try:
@@ -9,15 +8,21 @@ try:
 except ImportError:
     from django.contrib.auth.models import User
 
+
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option('--username', dest='username', default=None,
-                    help='Specifies the username for the superuser.'),
-        make_option('--email', dest='email', default=None,
-                    help='Specifies the email address for the superuser.'),
-        make_option('--password', dest='password', default=None,
-                    help='Specify superuser password.')
-    )
+    def add_arguments(self, parser):
+            parser.add_argument(
+                '--username',
+                help='Specifies the username for the superuser.'
+            )
+            parser.add_argument(
+                '--email',
+                help='Specifies the email address for the superuser.'
+            )
+            parser.add_argument(
+                '--password',
+                help='Specify superuser password.'
+            )
 
     def handle(self, *args, **options):
         for key in ('password', 'username', 'email'):
