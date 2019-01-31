@@ -38,6 +38,6 @@ class Command(BaseCommand):
         try:
             User.objects.create_superuser(options['username'], options['email'],
                                           options['password'])
-        except IntegrityError, err:
+        except IntegrityError as err:
             if not options['ignore_existing']: 
                 raise err
